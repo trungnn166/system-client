@@ -3,9 +3,11 @@
     <div class="login">
       <el-card>
         <h2><i class="el-icon-user"></i>Login</h2>
+        <el-alert title="Wrong email or password"  type="error" show-icon v-if="loginError">
+        </el-alert>
         <el-form class="login-form" :model="info" :rules="rules" ref="form" @submit.native.prevent="login">
           <el-form-item prop="email">
-            <el-input v-model="info.email" placeholder="email" prefix-icon="fas fa-user"></el-input>
+            <el-input v-model="info.email" placeholder="Email" prefix-icon="fas fa-user"></el-input>
           </el-form-item>
           <el-form-item prop="password">
             <el-input v-model="info.password" placeholder="Password" type="password" prefix-icon="fas fa-lock"></el-input>
@@ -24,7 +26,7 @@
 </template>
 
 <script>
-import * as Auth from '../api/auth'
+import * as Auth from '../api/authApi'
 export default {
   name: "LoginScreen",
   data: function() {
@@ -50,7 +52,8 @@ export default {
           { required: true, message: "Please input password", trigger: "blur" },
           { min: 6, message: "Password length should be at least 6 characters",trigger: "blur" }
         ]
-      }
+      },
+      loginError: false
     }
   },
   methods: {
@@ -88,6 +91,9 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
+    background: #102a43;
   }
 
   .login-button {
@@ -96,12 +102,14 @@ export default {
   }
   .login-form {
     width: 100%;
+    margin-top: 5px;
   }
   .forgot-password {
     margin-top: 10px;
   }
+
 </style>
-<style lang="scss">
+<style lang="scss" >
   #login {
     font-family: Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -113,13 +121,7 @@ export default {
     flex-direction: column;
     min-height: 100vh;
   }
-  body {
-    margin: 0;
-    padding: 0;
-    background: #102a43;
-    background-image: url("https://uploads.codesandbox.io/uploads/user/c3fb8e8a-35ea-4232-b5d6-0f3c5373510b/LVs7-dots.png");
-    background-size: contain;
-  }
+
   .footer, .header {
     padding: 20px 20px;
     color: #f0f4f8;

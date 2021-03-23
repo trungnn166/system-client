@@ -1,0 +1,12 @@
+
+export const AuthMutations = {
+    LOGIN_SUCCESS(state, userLogin) {
+        state.isLogin = true,
+        state.userLogin = userLogin;
+    },
+
+    LOGOUT(state) {
+        state.isLogin = false;
+        state.userLogin = {};
+    }
+}

@@ -1,21 +1,10 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import middlewares from './middleware'
+import Vue from 'vue';
+import {AuthModule} from './modules/auth_module';
+import Vuex from 'vuex';
+Vue.use(Vuex);
 
-Vue.use(VueRouter)
-let routes = [
-
-  {
-    path: '/login', name: 'login', component: Login, beforeEnter: middlewares.guest
-  },
-//   {
-//     path: '/general', name: 'homeIndex', component: HomeIndex, beforeEnter: middlewares.auth
-//   },
-
-]
-
-const router = new VueRouter({
-  routes
+export const store = new Vuex.Store({
+    modules: {
+        auth: AuthModule
+    }
 });
-
-export default router;
