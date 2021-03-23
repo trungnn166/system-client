@@ -2,10 +2,10 @@ import axios from 'axios';
 
 export const HTTP = axios.create({
   baseURL: 'http://localhost:8000/api/',
-  headers: authHeader
+  headers: authHeader()
 })
 
-const authHeader = () => {
+function authHeader() {
   let token = localStorage.getItem('jwt_token');
 
   let headers =  {
@@ -17,8 +17,8 @@ const authHeader = () => {
       'Access-Control-Allow-Origin': '*'
   }
 
-  if (token) {
-    headers['Authorization', 'Bearer ' + token];
+  if (token != null) {
+    headers['Authorization'] = 'Bearer ' + token;
   } 
 
   return headers;

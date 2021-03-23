@@ -9,17 +9,17 @@ Vue.use(Router);
 const router = new Router({
   mode: 'history',
   routes: [
-    { path: PATH.ROUTER_DASHBOARD, component: DashboardScreen },
-    { path: PATH.ROUTER_LOGIN, component: LoginScreen },
+    { path: PATH.ROUTER_DASHBOARD, component: DashboardScreen, name: 'dashboard' },
+    { path: PATH.ROUTER_LOGIN, component: LoginScreen, name: 'login' },
   ]
 });
 
 router.beforeEach((to, from, next) => {
-  const toke = localStorage.getItem(Constants.JWT_TOKEN);
-  if(!PATH.PUBLIC_ROUTER.includes(to.path) && toke == null) {
+  const token = localStorage.getItem(Constants.JWT_TOKEN);
+  if(!PATH.PUBLIC_ROUTER.includes(to.path) && token == null) {
     return next(PATH.ROUTER_LOGIN);
   }
-  if(to.path === PATH.ROUTER_LOGIN && toke != null) {
+  if(to.path === PATH.ROUTER_LOGIN && token != null) {
     return next(PATH.ROUTER_DASHBOARD);
   }
   next();

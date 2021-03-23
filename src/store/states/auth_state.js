@@ -1,4 +1,5 @@
 export  const AuthState = {
     isLogin: false,
-    userLogin: {}
+    userLogin: {},
+    isLoginFail: false
 }

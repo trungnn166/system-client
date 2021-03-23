@@ -3,7 +3,7 @@
     <div class="login">
       <el-card>
         <h2><i class="el-icon-user"></i>Login</h2>
-        <el-alert title="Wrong email or password"  type="error" show-icon v-if="loginError">
+        <el-alert title="Wrong email or password"  type="error" show-icon v-if="isLoginFail">
         </el-alert>
         <el-form class="login-form" :model="info" :rules="rules" ref="form" @submit.native.prevent="login">
           <el-form-item prop="email">
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import * as Auth from '../api/authApi'
 export default {
   name: "LoginScreen",
   data: function() {
@@ -53,9 +52,9 @@ export default {
           { min: 6, message: "Password length should be at least 6 characters",trigger: "blur" }
         ]
       },
-      loginError: false
     }
   },
+
   methods: {
     simulateLogin() {
       return new Promise(resolve => {
@@ -70,17 +69,20 @@ export default {
       this.loading = true;
       await this.simulateLogin();
       this.loading = false;
-      Auth.login(this.info);
-      // if (
-      //   this.model.username === this.validCredentials.username &&
-      //   this.model.password === this.validCredentials.password
-      // ) {
-      //   this.$message.success("Login successfull");
-      // } else {
-      //   this.$message.error("Username or password is invalid");
-      // }
+      this.$store.dispatch('auth/login', this.info);
     }
-  }
+  },
+
+  computed: {
+    isLoginFail() {
+      return this.$store.state.auth.isLoginFail;
+    }
+  },
+
+   created() {
+    this.$store.watch((state) => state.auth.isLoginFail);
+  },
+   
 };
 </script>
 

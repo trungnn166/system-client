@@ -1,5 +1,8 @@
 <template>
-    <h1>This is Dashboard</h1>
+   <div>
+      <h1>This is Dashboard</h1>
+      <h2>{{userLogin}}</h2>
+   </div>
 </template>
 
 <script>
@@ -14,6 +17,12 @@ export default {
 
   methods: {
     
+  },
+
+  computed: {
+    userLogin() {
+      return this.$store.state.auth.userLogin;
+    }
   }
   
 }

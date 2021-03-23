@@ -8,5 +8,9 @@ export const AuthMutations = {
     LOGOUT(state) {
         state.isLogin = false;
         state.userLogin = {};
+    },
+
+    LOGIN_FAIL(state) {
+        state.isLoginFail = true;
     }
 }
