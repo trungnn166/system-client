@@ -12,8 +12,11 @@ async function login(data){
     .catch()
 }
 
-const logout = () => {
-  localStorage.removeItem('jwt_token');
+async function logout() {
+  return HTTP.get(Constants.API_LOGOUT)
+  .then(() => {
+    localStorage.removeItem('jwt_token');
+  })
 }
 
 async function getUserLogin() {

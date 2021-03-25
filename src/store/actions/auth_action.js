@@ -25,6 +25,10 @@ export const AuthActions = {
     },
 
     logout({commit}) {
-        commit('logout');
+        AuthApi.logout()
+            .then(() => {
+                commit('LOGOUT');
+                router.push('login');
+            })
     }
 }

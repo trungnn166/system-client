@@ -1,16 +1,24 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import DashboardScreen from '../pages/DashboardScreen'
+import DashboardScreen from '../pages/dashboard/DashboardScreen'
 import LoginScreen from '../pages/LoginScreen'
 import * as PATH from './router';
 import * as Constants from '../helper/constants';
+import AppScreen from '../pages/AppScreen';
 Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
   routes: [
-    { path: PATH.ROUTER_DASHBOARD, component: DashboardScreen, name: 'dashboard' },
     { path: PATH.ROUTER_LOGIN, component: LoginScreen, name: 'login' },
+    {
+      path: '',
+      component: AppScreen,
+      children: [
+        { path: PATH.ROUTER_DASHBOARD, component: DashboardScreen, name: 'dashboard' },
+      ]
+
+    }
   ]
 });
 
