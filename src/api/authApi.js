@@ -22,8 +22,19 @@ async function logout() {
 async function getUserLogin() {
     return HTTP.get(Constants.API_GET_USER_LOGIN);
 }
+
+async function changePassword(data) {
+  return HTTP.put(Constants.API_CHANGE_PASSWORD, data)
+        .then(res => {
+          if(res.data.token != null) {
+            localStorage.setItem(Constants.JWT_TOKEN, res.data.token);
+          }
+        }).catch();
+}
+
 export  {
     login,
     logout,
-    getUserLogin
+    getUserLogin,
+    changePassword
 }
