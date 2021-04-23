@@ -14,8 +14,9 @@
           </el-form-item>
           <el-form-item>
             <el-button :loading="loading" class="login-button" type="primary" native-type="submit" block>Login</el-button>
+            <el-button class="login-socical" ><i class="fab fa-google-plus-g"></i> Login by google</el-button>
           </el-form-item>
-          <a class="forgot-password" href="https://oxfordinformatics.com/">Forgot password ?</a>
+          <a class="forgot-password" >Forgot password ?</a>
         </el-form>
       </el-card>
     </div>
@@ -102,6 +103,13 @@ export default {
     width: 100%;
     margin-top: 40px;
   }
+  .login-socical {
+    width: 100%;
+    margin-top: 20px;
+    margin-left: 0;
+    background: #f56c6c;
+    color: white
+  }
   .login-form {
     width: 100%;
     margin-top: 5px;
@@ -125,7 +133,6 @@ export default {
   }
 
   .footer, .header {
-    padding: 20px 20px;
     color: #f0f4f8;
     display: flex;
     flex-direction: column;
@@ -150,7 +157,7 @@ export default {
     .version {
       font-family: "Open Sans";
       padding: 0 10px;
-      color: #9fb3c8;
+      color: #2f3338;
       font-size: 12px;
       margin-top: 5px;
     }
